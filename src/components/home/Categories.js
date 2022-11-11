@@ -1,5 +1,5 @@
 import { View, Text, FlatList, Pressable } from "react-native";
-import React, { useMemo } from "react";
+import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { ItemSeparator } from "@digital-art-dealers/react-native-component-lib";
 import { setSelectedCategory } from "../../redux/TasksSlice";
