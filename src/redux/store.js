@@ -6,15 +6,17 @@ import { persistReducer } from "redux-persist";
 import thunk from "redux-thunk";
 
 import UserSlice from "./UserSlice";
+import TasksSlice from "./TasksSlice";
 
 const reducers = combineReducers({
-	UserSlice
+	UserSlice,
+	TasksSlice
 });
 
 const persistConfig = {
 	key: "root",
 	storage: AsyncStorage,
-	whitelist: [] // add reducers you want to persist here
+	whitelist: ["UserSlice", "TasksSlice"] // add reducers you want to persist here
 };
 
 const persistedReducer = persistReducer(persistConfig, reducers);

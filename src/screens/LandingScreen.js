@@ -1,17 +1,26 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useMemo } from "react";
 import { View } from "react-native";
 import LottieView from "lottie-react-native";
 import PropTypes from "prop-types";
 
 import { NAVIGATORS } from "../utils/screens";
+import { useSelector } from "react-redux";
 
 const LandingAnimation = require("../assets/lottie/landingAnimation.json");
 
 const LandingScreen = ({ navigation }) => {
+	const user = useSelector(({ UserSlice }) => UserSlice.user);
+
+	const isUserSet = useMemo(() => {
+		return user?.email && user?.username;
+	}, [user]);
+
 	useEffect(() => {
-		setTimeout(() => {
-			navigation.replace(NAVIGATORS.BOTTOM_TAB);
-		}, 700); // Mocking data loading at landing screen
+		if (isUserSet) {
+			navigation.replace(NAVIGATORS.HOME);
+		} else {
+			navigation.replace(NAVIGATORS.AUTH);
+		}
 	}, []);
 
 	return (
